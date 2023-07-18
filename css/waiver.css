@@ -1,10 +1,11 @@
 .container {
     display: grid;
-    grid-template-columns: 1fr;
-    width: 70%;
-    max-width: 375px;
+    width: clamp(70%, 375px, 95%);
+
+    grid-template-columns:repeat(1, 1fr);
     margin: 0 auto;
 }
+
 
 .container * {
     flex-shrink: 1;
@@ -25,8 +26,125 @@ figure figcaption:first-letter {
 }
 figure img {
     width: 100%;
-    height: auto;
+    height:auto;
 }
+/*problem2*/
+@media (min-width: 650px) {
+
+    .jump:focus-visible {
+        top: 5px;
+    }
+    .container{width:95%;
+        grid-template-columns: repeat(3, 25%);
+    background-image: url('../images/concrete_seamless.png');
+        place-content:space-evenly;
+    }
+
+figure:nth-child(even){
+    grid-column: 2/ span 2;
+
+}
+    figure:nth-child(odd){
+        grid-column: 1/ span 2;
+
+    }
+}
+/*problem3*/
+@media (min-width: 750px) {
+
+    .jump:focus-visible {
+        top: 5px;
+    }
+
+    .container {
+        width: 95%;
+        grid-template-columns: repeat(4,20%); /*modify the gap*/
+        background-image: url('../images/concrete_seamless.png');justify-content: space-between;
+    }
+
+    figure:nth-child(even){
+        grid-column: 3/ span 2;
+
+    }
+    figure:nth-child(odd){
+        grid-column: 1/ span 2;}
+
+    figure:last-child {
+        grid-column: 2 / span 2;
+    }
+}
+/*problem4*/
+@media (min-width: 900px) {
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        grid-template-columns: none;
+        align-items: center;
+    }
+    .container > :nth-child(n) {
+        width: 20%;
+    }
+    .container > :nth-child(4n) {
+        width: 40%;
+        border: 10px solid black;
+    }
+    .container > :nth-child(2) {
+        order: 1;
+    }
+}
+
+/*problem5*/
+@media (min-width: 1050px) {
+    .container {
+        width: 95%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        overflow: hidden;
+    }
+
+
+    .container > :nth-child(n) {
+        width: 75%;
+        margin-bottom: 20px;
+        order: 0;
+        grid-column: auto;
+    }
+
+    figure:nth-child(odd) {
+        grid-column: 1/ span 1;
+        transform: rotate(-15deg);
+
+    }
+
+    figure:nth-child(even) {
+        grid-column: 2 / span 1;
+        transform: rotate(15deg);
+
+    }
+
+    .container > :last-child {
+        grid-column:span 2;
+        transform: none;
+    }
+}
+
+/*problem6*/
+@keyframes fadeIn { 0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.logo {
+    animation: fadeIn 10s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logo {
+        animation: none;
+    }
+}
+
 
 
 
